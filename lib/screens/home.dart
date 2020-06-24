@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/util/colors_util.dart';
+import 'package:foodapp/widgets/bottom_navigation_icon.dart';
 import 'package:foodapp/widgets/categories.dart';
+import 'package:foodapp/widgets/featured_product.dart';
 import 'package:foodapp/widgets/text_template.dart';
 
 class Home extends StatefulWidget {
@@ -31,7 +33,7 @@ class _HomeState extends State<Home> {
                     IconButton(
                       icon: Icon(
                         Icons.notifications_none,
-                        color: amber,
+                        color: red,
                       ),
                       onPressed: () {},
                     ),
@@ -95,110 +97,19 @@ class _HomeState extends State<Home> {
                 textSize: 20,
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.42,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 2,
-                  itemBuilder: (_, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.42,
-                        width: 200,
-                        decoration: BoxDecoration(color: white, boxShadow: [
-                          BoxShadow(
-                              color: grey[300],
-                              offset: Offset(1, 1),
-                              blurRadius: 5,
-                              spreadRadius: 1)
-                        ]),
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.favorite_border,
-                                  color: red,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                            Image.asset(
-                              'assets/images/salmonpinwheel.png',
-                              height: 140,
-                              width: 140,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: TextTemplate(text: 'Salmon pinwheel'),
-                                ),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.near_me,
-                                    color: red,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: TextTemplate(
-                                        text: '4.7',
-                                        textSize: 14,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 2,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: red,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: red,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: red,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: red,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: grey,
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right:8.0),
-                                  child: TextTemplate(text: '\$12.95',textWeight: FontWeight.bold,),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-            ),
+            FeaturedProduct(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 63,
+        color: white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            BottomNavIcon(imagePath: 'assets/images/home.png',text: 'Home',),
+            BottomNavIcon(imagePath: 'assets/images/shoppingbag.png',text: 'Cart',),
+            BottomNavIcon(imagePath: 'assets/images/home.png',text: 'Home',),
           ],
         ),
       ),

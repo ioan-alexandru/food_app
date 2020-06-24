@@ -33,9 +33,9 @@ class Categories extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(color: white, boxShadow: [
                     BoxShadow(
-                        color: amber[50],
-                        offset: Offset(5, 7),
-                        blurRadius: 10,
+                        color: red[50],
+                        offset: Offset(2, 4),
+                        blurRadius: 6,
                         spreadRadius: 1)
                   ]),
                   child: Padding(
