@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/screens/bag.dart';
 import 'package:foodapp/util/colors_util.dart';
+import 'package:foodapp/util/screen_navigation.dart';
 import 'package:foodapp/widgets/bottom_navigation_icon.dart';
 import 'package:foodapp/widgets/categories.dart';
 import 'package:foodapp/widgets/featured_product.dart';
@@ -108,7 +110,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             BottomNavIcon(imagePath: 'assets/images/home.png',text: 'Home',),
-            BottomNavIcon(imagePath: 'assets/images/shoppingbag.png',text: 'Cart',),
+            BottomNavIcon(imagePath: 'assets/images/shoppingbag.png',text: 'Cart', onTap: () {changeScreen(context, ShoppingBag());},),
             BottomNavIcon(imagePath: 'assets/images/home.png',text: 'Home',),
           ],
         ),
