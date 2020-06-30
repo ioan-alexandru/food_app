@@ -12,7 +12,6 @@ List<Category> categoriesList = [
   Category(name: 'Sushi', imagePath: 'assets/images/sushi.png'),
 ];
 
-
 class Categories extends StatelessWidget {
   const Categories({
     Key key,
@@ -25,26 +24,29 @@ class Categories extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categoriesList.length,
-        itemBuilder: (_,index) {
+        itemBuilder: (_, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: white, boxShadow: [
-                    BoxShadow(
-                        color: red[50],
-                        offset: Offset(2, 4),
-                        blurRadius: 6,
-                        spreadRadius: 1)
-                  ]),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black12)),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(categoriesList[index].imagePath,width: 45,),
+                    child: Image.asset(
+                      categoriesList[index].imagePath,
+                      width: 45,
+                    ),
                   ),
                 ),
-                SizedBox(height: 8,),
-                TextTemplate(text: categoriesList[index].name,textSize: 14,)
+                SizedBox(
+                  height: 8,
+                ),
+                TextTemplate(
+                  text: categoriesList[index].name,
+                  textSize: 14,
+                )
               ],
             ),
           );

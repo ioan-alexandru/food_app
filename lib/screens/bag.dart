@@ -9,13 +9,14 @@ class ShoppingBag extends StatefulWidget {
 }
 
 class _ShoppingBagState extends State<ShoppingBag> {
-  Product  product = Product(
-  name: 'Salmon pinwheel',
-  rating: 5,
-  imagePath: 'assets/images/salmonpinwheel.png',
-  price: 12.99,
-  wishList: true,
-  vendor: 'Mamma Mia');
+  Product product = Product(
+      name: 'Salmon pinwheel',
+      rating: 5,
+      imagePath: 'assets/images/salmonpinwheel.png',
+      price: 12.99,
+      wishList: true,
+      vendor: 'Mamma Mia');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +54,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
                             )
                           ]),
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 4.0, right: 4.0),
+                        padding: const EdgeInsets.only(left: 4.0, right: 4.0),
                         child: TextTemplate(
                           text: "2",
                           textColor: red,
@@ -74,7 +74,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
           Container(
             height: 50,
             child: Padding(
-              padding: const EdgeInsets.only(left:30.0,top: 10),
+              padding: const EdgeInsets.only(left: 30.0, top: 10),
               child: TextTemplate(
                 text: 'Your Food Cart',
                 textSize: 30,
@@ -90,10 +90,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
                 color: white,
                 boxShadow: [
                   BoxShadow(
-                    color: red[50],
-                    offset: Offset(3,7),
-                    blurRadius: 25
-                  )
+                      color: red[50], offset: Offset(3, 7), blurRadius: 25)
                 ],
               ),
               child: Row(
@@ -109,23 +106,24 @@ class _ShoppingBagState extends State<ShoppingBag> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      RichText(text: TextSpan(
-                        children: [
-                          TextSpan(text: product.name + "\n",style: TextStyle(
-                            color: black,
-                            fontSize: 20
-                          )),
-                          TextSpan(text: "\$" + product.price.toString() + "\n",style: TextStyle(
-                              color: black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold
-                          )),
-                        ]
-                      )),
+                      RichText(
+                          text: TextSpan(children: [
+                        TextSpan(
+                            text: product.name + "\n",
+                            style: TextStyle(color: black, fontSize: 20)),
+                        TextSpan(
+                            text: "\$" + product.price.toString() + "\n",
+                            style: TextStyle(
+                                color: black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
+                      ])),
                       SizedBox(
                         width: 50,
                       ),
-                      IconButton(icon: Icon(Icons.delete),)
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                      )
                     ],
                   )
                 ],
