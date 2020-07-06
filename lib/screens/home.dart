@@ -4,9 +4,11 @@ import 'package:foodapp/util/colors_util.dart';
 import 'package:foodapp/util/screen_navigation.dart';
 import 'package:foodapp/widgets/categories.dart';
 import 'package:foodapp/widgets/featured_product.dart';
+import 'package:foodapp/widgets/popular_restaurant.dart';
 import 'package:foodapp/widgets/small_button.dart';
 import 'package:foodapp/widgets/text_template.dart';
-import 'package:foodapp/providers/auth.dart';
+import 'package:foodapp/providers/user.dart';
+import 'package:foodapp/providers/restaurant.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +19,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final user = Provider.of<UserProvider>(context);
+    final restaurantProvider = Provider.of<RestaurantProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: TextTemplate(
@@ -81,12 +84,12 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: TextTemplate(
-                text: authProvider.userModel.name,
+                text: user.userModel.name,
                 textSize: 18,
                 textWeight: FontWeight.bold,
               ),
               accountEmail: TextTemplate(
-                text: authProvider.userModel.email,
+                text: user.userModel.email,
               ),
             ),
             ListTile(
@@ -153,7 +156,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 5,
             ),
-            Categories(),
+            CategoryWidget(),
             SizedBox(
               height: 5,
             ),
@@ -183,305 +186,16 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Image.asset('assets/images/salmonpinwheel.png')),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SmallButton(Icons.favorite),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 50,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(2.0),
-                                  child: Icon(
-                                    Icons.star,
-                                    color: Colors.yellow[900],
-                                    size: 20,
-                                  ),
-                                ),
-                                Text("4.5"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.8),
-                              Colors.black.withOpacity(0.7),
-                              Colors.black.withOpacity(0.6),
-                              Colors.black.withOpacity(0.4),
-                              Colors.black.withOpacity(0.1),
-                              Colors.black.withOpacity(0.05),
-                              Colors.black.withOpacity(0.025),
-                            ],
-                          )),
-                    ),
-                  )),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-                          child: RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "Santos Tacho \n",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              TextSpan(
-                                  text: "avg meal price: ",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300)),
-                              TextSpan(
-                                  text: "\$5.99 \n",
-                                  style: TextStyle(fontSize: 16)),
-                            ], style: TextStyle(color: white)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Image.asset("assets/images/salmonpinwheel.png")),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SmallButton(Icons.favorite),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 50,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(2.0),
-                                  child: Icon(
-                                    Icons.star,
-                                    color: Colors.yellow[900],
-                                    size: 20,
-                                  ),
-                                ),
-                                Text("4.5"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.8),
-                              Colors.black.withOpacity(0.7),
-                              Colors.black.withOpacity(0.6),
-                              Colors.black.withOpacity(0.4),
-                              Colors.black.withOpacity(0.1),
-                              Colors.black.withOpacity(0.05),
-                              Colors.black.withOpacity(0.025),
-                            ],
-                          )),
-                    ),
-                  )),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-                          child: RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "Santos Tacho \n",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              TextSpan(
-                                  text: "avg meal price: ",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300)),
-                              TextSpan(
-                                  text: "\$5.99 \n",
-                                  style: TextStyle(fontSize: 16)),
-                            ], style: TextStyle(color: white)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Image.asset('assets/images/salmonpinwheel.png')),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SmallButton(Icons.favorite),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 50,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(2.0),
-                                  child: Icon(
-                                    Icons.star,
-                                    color: Colors.yellow[900],
-                                    size: 20,
-                                  ),
-                                ),
-                                Text("4.5"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.8),
-                              Colors.black.withOpacity(0.7),
-                              Colors.black.withOpacity(0.6),
-                              Colors.black.withOpacity(0.4),
-                              Colors.black.withOpacity(0.1),
-                              Colors.black.withOpacity(0.05),
-                              Colors.black.withOpacity(0.025),
-                            ],
-                          )),
-                    ),
-                  )),
-                  Positioned.fill(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-                          child: RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "Santos Tacho \n",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              TextSpan(
-                                  text: "avg meal price: ",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300)),
-                              TextSpan(
-                                  text: "\$5.99 \n",
-                                  style: TextStyle(fontSize: 16)),
-                            ], style: TextStyle(color: white)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            ),
+            Column(
+              children: restaurantProvider.restaurants
+                  .map((item) => GestureDetector(
+                onTap: () {},
+                child: RestaurantWidget(
+                  restaurant: item,
+                ),
+              ))
+                  .toList(),
+            )
           ],
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:foodapp/util/colors_util.dart';
 import 'package:foodapp/widgets/text_template.dart';
 
 class Details extends StatefulWidget {
-  final Product product;
+  final ProductModel product;
 
   const Details({Key key, @required this.product}) : super(key: key);
 
@@ -140,7 +140,7 @@ class _DetailsState extends State<Details> {
                 Padding(
                   padding: const EdgeInsets.only(right: 30.0),
                   child: TextTemplate(
-                      text: "\$" + widget.product.price.toString(),
+                      text: "\$" + (widget.product.price / 100).toString(),
                       textSize: 20,
                       textWeight: FontWeight.w400),
                 ),

@@ -6,7 +6,7 @@ import 'package:foodapp/services/user.dart';
 
 enum Status{Uninitialized, Authenticated, Authenticating, Unauthenticated}
 
-class AuthProvider with ChangeNotifier{
+class UserProvider with ChangeNotifier{
   FirebaseAuth _auth;
   FirebaseUser _user;
   Status _status = Status.Uninitialized;
@@ -14,7 +14,6 @@ class AuthProvider with ChangeNotifier{
   UserServices _userServicse = UserServices();
   UserModel _userModel;
 
-//  getter
   UserModel get userModel => _userModel;
   Status get status => _status;
   FirebaseUser get user => _user;
@@ -26,7 +25,7 @@ class AuthProvider with ChangeNotifier{
   TextEditingController name = TextEditingController();
 
 
-  AuthProvider.initialize(): _auth = FirebaseAuth.instance{
+  UserProvider.initialize(): _auth = FirebaseAuth.instance{
     _auth.onAuthStateChanged.listen(_onStateChanged);
   }
 
@@ -53,7 +52,9 @@ class AuthProvider with ChangeNotifier{
         _firestore.collection('users').document(result.user.uid).setData({
           'name':name.text,
           'email':email.text,
-          'uid':result.user.uid
+          'uid':result.user.uid,
+          'likedFood' : [],
+          'likedRestaurants' : []
         });
       });
       return true;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/providers/auth.dart';
+import 'package:foodapp/providers/user.dart';
 import 'package:foodapp/screens/home.dart';
 import 'package:foodapp/screens/registration.dart';
 import 'package:foodapp/util/colors_util.dart';
@@ -17,7 +17,7 @@ class _LandingPageState extends State<LandingPage> {
   final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       backgroundColor: white,

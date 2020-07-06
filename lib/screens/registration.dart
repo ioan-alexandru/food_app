@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/providers/auth.dart';
+import 'package:foodapp/providers/user.dart';
 import 'package:foodapp/screens/landing_page.dart';
 import 'package:foodapp/util/colors_util.dart';
 import 'package:foodapp/util/screen_navigation.dart';
@@ -17,7 +17,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       backgroundColor: white,

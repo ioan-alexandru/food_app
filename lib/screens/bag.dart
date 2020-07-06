@@ -9,13 +9,7 @@ class ShoppingBag extends StatefulWidget {
 }
 
 class _ShoppingBagState extends State<ShoppingBag> {
-  Product product = Product(
-      name: 'Salmon pinwheel',
-      rating: 5,
-      imagePath: 'assets/images/salmonpinwheel.png',
-      price: 12.99,
-      wishList: true,
-      vendor: 'Mamma Mia');
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +63,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
         ],
       ),
       backgroundColor: white,
-      body: ListView(
+      /*body: ListView(
         children: <Widget>[
           Container(
             height: 50,
@@ -131,7 +125,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
             ),
           )
         ],
-      ),
+      ),*/
     );
   }
 }
